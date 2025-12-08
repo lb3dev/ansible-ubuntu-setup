@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+SETUP_DIR=~/.setup
+SETUP_LOGS_DIR="$SETUP_DIR/logs"
+SETUP_BACKUP_LOGS_DIR="$SETUP_DIR/logs/backup"
+CURR_DATE=$(date +%Y-%m-%d-%H%M%S)
+
+# Create ~/.setup as the default folder to store all setup related logs and files
+mkdir -p "$SETUP_DIR"
+mkdir -p "$SETUP_LOGS_DIR"
+mkdir -p "$SETUP_BACKUP_LOGS_DIR"
+
+# Capture all logs from this script to a new setup log file
+LOGFILE="$SETUP_LOGS_DIR/setup-$CURR_DATE.log"
+touch "$LOGFILE"
+
+# Update apt
+
+sudo apt update
+sudo apt -y upgrade
+
+# Refresh all snap packages
+
+sudo snap refresh
+
+# Install SPICE guest tools
+
+sudo apt install -y spice-vdagent
+sudo apt install -y spice-webdavd
+
+# Install important packages
+
+sudo apt install -y git
+sudo apt install -y python3.13-venv
+
+# Save file descriptors for stdout and stderr, write all further output to logfile
+exec 3>&1
+exec 4>&2
+exec > >(tee -a "$LOGFILE") 2>&1
+
+echo "Running setup script at: $CURR_DATE"
+
+set -e
+set -u
+set -o pipefail
+
+# Setup virtualenv, update pip and install ansible and dependencies
+set -x
+/usr/bin/python3 -m venv ~/.setup/venv-ansible
+
+set +x
+source ~/.setup/venv-ansible/bin/activate
+
+set -x
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# Restore original file descriptors for stdout and stderr
+set +x
+exec 1>&3 3>&-
+exec 2>&4 4>&-
+
+set -x
+export ANSIBLE_LOG_PATH="$SETUP_LOGS_DIR/ansible-$CURR_DATE.log"
+
+gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
+
+ansible-playbook main.yml -K
