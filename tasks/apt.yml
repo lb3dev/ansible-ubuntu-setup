@@ -1,0 +1,11 @@
+---
+- name: Add qbtt repo
+  command: add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+  become: true
+
+- name: Install packages
+  apt:
+    pkg: "{{ apt_packages }}"
+    state: present
+    update_cache: true
+  become: true

@@ -1,0 +1,4 @@
+---
+- name: Open Firefox initial pages
+  command: firefox {{ item }}
+  with_items: "{{ firefox_initial_pages | default([]) }}"

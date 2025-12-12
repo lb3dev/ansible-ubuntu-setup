@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars_files:
+    - default.config.yml
+  tasks:
+    - import_tasks: tasks/apt.yml
+      tags: apt
+    - import_tasks: tasks/browser.yml
+      tags: browser
