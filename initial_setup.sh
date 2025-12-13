@@ -28,11 +28,6 @@ sudo apt -y upgrade
 
 sudo snap refresh
 
-# Install SPICE guest tools
-
-sudo apt install -y spice-vdagent
-sudo apt install -y spice-webdavd
-
 # Install important packages
 
 sudo apt install -y git
