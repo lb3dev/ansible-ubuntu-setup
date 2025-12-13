@@ -4,5 +4,4 @@ apt_packages:
   - sublime-text
 
 firefox_initial_pages:
-  - 'about:preferences'
   - 'https://addons.mozilla.org/en-CA/firefox/addon/ublock-origin'
