@@ -87,3 +87,6 @@ user_pref("layout.css.prefers-color-scheme.content-override", 0);
 /* Always show bookmark toolbar
  * [SETTING] Right click bookmark toolbar on new page > Bookmarks Toolbar > Always Show ***/
 user_pref("browser.toolbars.bookmarks.visibility", "always");
+
+/* Warn before Quit (Ctrl + Q) ***/
+user_pref("browser.warnOnQuitShortcut", false);
