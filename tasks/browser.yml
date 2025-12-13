@@ -2,3 +2,16 @@
 - name: Open Firefox initial pages
   command: firefox {{ item }}
   with_items: "{{ firefox_initial_pages | default([]) }}"
+
+- name: Find default Firefox profile folder
+  find:
+    paths: "~/snap/firefox/common/.mozilla/firefox"
+    patterns: "*.default"
+    file_type: "directory"
+  register: find_result
+
+- name: Copy user.js to default Firefox profile folder
+  copy:
+    src: files/user.js
+    dest: "{{ find_result.files[0].path }}"
+  when: find_result.matched == 1
