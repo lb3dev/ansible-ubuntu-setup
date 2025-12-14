@@ -1,5 +1,42 @@
 ## Setting up an Ubuntu Desktop VM with UTM
 
+### Disk Snapshotting
+
+Open UTM, select VM and right click Show in Finder, the path to VM files should be:
+```bash
+cd ~/Library/Containers/com.utmapp.UTM/Data/Documents/Ubuntu.utm
+```
+
+The disk in use would be the qcow2 file within:
+```bash
+export QCOW2_FILE=~/Library/Containers/com.utmapp.UTM/Data/Documents/Ubuntu.utm/Data/AAA.qcow2
+```
+
+Install qemu via Homebrew
+```bash
+brew install qemu
+```
+
+Create snapshot
+```bash
+qemu-img snapshot $QCOW2_FILE -c {{ snapshot name }}
+```
+
+List snapshots
+```bash
+qemu-img snapshot $QCOW2_FILE -l
+```
+
+Revert disk to snapshot
+```bash
+qemu-img snapshot $QCOW2_FILE -a {{ snapshot name }}
+```
+
+Delete snapshot
+```bash
+qemu-img snapshot $QCOW2_FILE -d {{ snapshot name }}
+```
+
 ### Sharing
 
 Install SPICE Guest tools
