@@ -14,6 +14,18 @@ mkdir -p "$SETUP_BACKUP_LOGS_DIR"
 LOGFILE="$SETUP_LOGS_DIR/setup-$CURR_DATE.log"
 touch "$LOGFILE"
 
+# Save file descriptors for stdout and stderr, write all further output to logfile
+exec 3>&1
+exec 4>&2
+exec > >(tee -a "$LOGFILE") 2>&1
+
+echo "Running setup script at: $CURR_DATE"
+
+set -e
+set -u
+set -o pipefail
+set -x
+
 # Sublime text
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo tee /etc/apt/keyrings/sublimehq-pub.asc > /dev/null
@@ -33,19 +45,7 @@ sudo snap refresh
 sudo apt install -y git
 sudo apt install -y python3.13-venv
 
-# Save file descriptors for stdout and stderr, write all further output to logfile
-exec 3>&1
-exec 4>&2
-exec > >(tee -a "$LOGFILE") 2>&1
-
-echo "Running setup script at: $CURR_DATE"
-
-set -e
-set -u
-set -o pipefail
-
 # Setup virtualenv, update pip and install ansible and dependencies
-set -x
 /usr/bin/python3 -m venv ~/.setup/venv-ansible
 
 set +x
