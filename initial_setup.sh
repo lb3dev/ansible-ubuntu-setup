@@ -43,7 +43,7 @@ sudo snap refresh
 # Install important packages
 
 sudo apt install -y git
-sudo apt install -y python3.13-venv
+sudo apt install -y python3.12-venv
 
 # Setup virtualenv, update pip and install ansible and dependencies
 /usr/bin/python3 -m venv ~/.setup/venv-ansible
