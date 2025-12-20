@@ -90,3 +90,19 @@ user_pref("browser.toolbars.bookmarks.visibility", "always");
 
 /* Warn before Quit (Ctrl + Q) ***/
 user_pref("browser.warnOnQuitShortcut", false);
+
+/* Disable Picture-in-Picture controls ***/
+user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
+user_pref("media.hardwaremediakeys.enabled", false);
+
+/* Disable Recommend extensions as you browse ***/
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false);
+
+/* Disable Recommend features as you browse ***/
+user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
+
+/* Disable Shortcut: Click and hold the link for 1 second (long press) ***/
+user_pref("browser.ml.linkPreview.longPress", false);
+
+/* Disable link previews ***/
+user_pref("browser.ml.linkPreview.enabled", false);
