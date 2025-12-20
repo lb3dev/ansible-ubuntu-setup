@@ -63,7 +63,6 @@ exec 2>&4 4>&-
 set -x
 export ANSIBLE_LOG_PATH="$SETUP_LOGS_DIR/ansible-$CURR_DATE.log"
 
-gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 
 ansible-playbook main.yml -K
