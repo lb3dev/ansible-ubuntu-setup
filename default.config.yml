@@ -2,6 +2,7 @@
 apt_packages:
   - qbittorrent
   - sublime-text
+  - mpv
 
 firefox_initial_pages:
   - 'https://addons.mozilla.org/en-CA/firefox/addon/ublock-origin'
