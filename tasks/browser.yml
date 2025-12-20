@@ -12,6 +12,6 @@
 
 - name: Copy user.js to default Firefox profile folder
   copy:
-    src: files/user.js
+    src: "{{ dotfiles_repo_local_destination }}/configs/firefox/user.js"
     dest: "{{ find_result.files[0].path }}"
   when: find_result.matched == 1

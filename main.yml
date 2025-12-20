@@ -2,6 +2,9 @@
 - hosts: all
   vars_files:
     - default.config.yml
+  roles:
+    - role: geerlingguy.dotfiles
+      tags: dotfiles
   tasks:
     - import_tasks: tasks/apt.yml
       tags: apt

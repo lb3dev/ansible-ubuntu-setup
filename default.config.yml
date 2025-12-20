@@ -1,4 +1,12 @@
 ---
+dotfiles_repo: https://github.com/lb3dev/dotfiles.git
+dotfiles_repo_version: master
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/.setup/dotfiles
+dotfiles_files:
+  - configs
+  - .gitignore
+
 apt_packages:
   - qbittorrent
   - sublime-text

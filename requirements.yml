@@ -1,0 +1,4 @@
+---
+roles:
+  - name: geerlingguy.dotfiles
+    version: "1.2.1"
