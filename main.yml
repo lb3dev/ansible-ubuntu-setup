@@ -5,5 +5,7 @@
   tasks:
     - import_tasks: tasks/apt.yml
       tags: apt
+    - import_tasks: tasks/ufw.yml
+      tags: ufw
     - import_tasks: tasks/browser.yml
       tags: browser
