@@ -51,3 +51,16 @@ After connecting to a SPICE shared folder, change directory in terminal:
 /run/user/1000/gvfs/dav+sd:host=Spice%2520client%2520folder._webdav._tcp.local
 ```
 Where 1000 is the current logged in userid
+
+### Clipboard
+
+For VMWare Player/Workstation
+```bash
+sudo apt install open-vm-tools-desktop
+```
+
+For Virtualbox
+```bash
+sudo apt install virtualbox-guest-x11
+sudo VBoxClient --clipboard
+```
