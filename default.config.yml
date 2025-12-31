@@ -8,6 +8,7 @@ dotfiles_files:
   - .gitignore
 
 apt_packages:
+  - vim
   - qbittorrent
   - sublime-text
   - mpv
