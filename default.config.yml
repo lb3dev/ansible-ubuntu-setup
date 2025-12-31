@@ -9,7 +9,6 @@ dotfiles_files:
 
 apt_packages:
   - vim
-  - qbittorrent
   - sublime-text
   - mpv
 
